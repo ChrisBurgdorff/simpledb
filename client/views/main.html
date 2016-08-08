@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html ng-app="dataEntry">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Simple DB</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Karla:400,400italic|Questrial' rel='stylesheet' type='text/css'>
+		<link rel="icon" href="/styles/images/simpledb.ico" type="image/x-icon" >
+		<link href="/styles/main.css" rel="stylesheet">		
+	</head>
+	<body>
+	<div ng-controller="indexController">
+	  <nav>
+		<a href=""><h2>Simple DB</h2></a>
+		<ul>
+		  <li ng-click="index()">Index</li>
+		  <li ng-click="search()">Search</li>
+		  <div class="inBlock" ng-controller="loginController">
+		  <li ng-show="loggedIn" ng-click="signOut()">Sign Out</li>
+		  </div>
+		</ul>
+	  </nav>
+		<div ng-show="neither" class="centered">
+			<p>Please Select <a ng-click="index()">Index</a> or <a ng-click="search()">Search</a></p>
+		</div>
+		<div ng-show="isIndexing">
+			<table><tr><th>
+				<span>Select Template</span></th></tr>
+				<tr><td>
+				<select id="templates" ng-model="currTemplate" ng-change="addTemplate(currTemplate)">
+					<option value="">---Select Template---</option>
+					<option ng-repeat="template in templates" value ="{{template.name}}">{{template.name}}</option>
+					<option>New Template</option>
+				</select></td>
+				</tr>
+			</table>
+				<div ng-show="templating">
+					<table>
+					<tr><td><input ng-model="newTemplate" placeholder="Template Name"></td></tr>
+					<tr ng-repeat="field in fields">
+						<td>{{field.name}}</td>
+						<td>{{field.type}}</td>
+					</tr>
+					<!--    <tr ng-repeat-end>
+						<td>{{field.type}}</td>
+					</tr>    -->
+					<tr><td><input ng-model="newFieldName" placeholder="Field Name"></td>
+						<td>
+							<select ng-model="newFieldType">
+							<option disabled selected value> -- select an option -- </option>
+							<option>Text</option>
+							<option>Number</option>
+							<option>Date</option>
+							<option>Time</option>
+							</select>
+						</td>
+						<td><button class="btn2" ng-click="addField()">Add Field</button></td>
+					</tr>
+					<tr>
+						<td><button class="btn" ng-click="submitTemplate()">Save Template</button></td>
+						<td><button class="btn" ng-click="cancelTemplate()">Cancel</button></td>
+					</tr>
+					</table><!--
+					<ul>
+						<li ng-repeat="field in fields">{{field.name}} : {{field.type}}</li>
+					</ul>
+					<input ng-model="newFieldName" placeholder="Field Name">
+					<select ng-model="newFieldType">
+						<option disabled selected value> -- select an option -- </option>
+						<option>Text</option>
+						<option>Number</option>
+						<option>Date</option>
+						<option>Time</option>
+					</select>
+					<button class="btn" ng-click="addField()">Add Field</button>
+					<button class="btn" ng-click="submitTemplate()">Submit Template</button>
+					<button class="btn" ng-click="cancelTemplate()">Cancel</button>     -->
+				</div>
+				<div ng-show="indexing">
+				<table>
+					<tr ng-repeat-start="field in fields">
+						<td>{{field.name}}</td>
+					</tr>
+					<tr ng-repeat-end>
+						<td><input class="fields" type="text"></td>
+					</tr>
+					<tr>
+						<td><button class="btn" id="submitRecord" ng-click="submitRecord()">Submit Record</button></td>
+					</tr>
+					<tr><td id="indexStatus"></td></tr>
+				</table>
+				</div>
+				</div>
+				</div>
+				<div ng-controller="searchController" id="tabs-2">
+			<div ng-show="isSearching">
+				<table>
+				<tr><td><span>Select Template</span></td></tr>
+				<tr><td>
+				<select id="searchTemplates" ng-model="searchTemplate" ng-change="changeTemplate(searchTemplate)">
+					<option disabled selected value> -- select a template -- </option>
+					<option value="All">All</option>
+					<option ng-repeat="template in templates" value ="{{template.name}}">{{template.name}}</option>
+				</select>
+				</td></tr>
+				<div ng-show="searching">
+					<!--  <table>   -->
+					<tr>
+						<td>
+							<select ng-model="fieldToSearch" id="fieldDDL">
+							<option disabled selected value> -- select a field -- </option>
+								<option value="All">All</option>
+								<option ng-repeat="searchField in searchFields" value="{{searchField.name}}">{{searchField.name}}</option>
+							</select>
+						</td>
+						</tr>
+						<tr>
+						<td>
+							<input type="text" ng-model="valueToSearch">
+						</td>
+					</tr>
+					<tr><td><button class="btn" ng-click="searchRecords()">Search</button></td></tr>
+					</table>
+					<table id="results" class="searchTable"></table>
+					<!--
+					<table id="results2">
+						<tr>
+						<th ng-repeat="header in headers">{{header}}</th>
+						</tr>
+						
+						<tr ng-repeat="tableRow in tableRows">
+						<td>{{tableCell}}</td>
+						</tr>		 				
+					</table>  
+					<ul><li ng-repeat="row in rows">{{row}}</li></ul>  -->
+				</div>
+			</div>
+		</div>
+		</div>
+		</div>
+		<footer>
+		<p>Designed by <a href="http://www.chrisburgdorff.com">Chris Burgdorff</a></p>
+		</footer>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript"></script>
+		<script src="styles/ui.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js" type="text/javascript"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-resource.js" type="text/javascript"></script>
+		<script src="/js/app.js" type="text/javascript"></script>
+		<script src="/js/controllers/login-controller.js" type="text/javascript"></script>
+		<script src="/js/controllers/index-controller.js" type="text/javascript"></script>
+		<script src="/js/controllers/search-controller.js" type="text/javascript"></script>
+	</body>
+</html>

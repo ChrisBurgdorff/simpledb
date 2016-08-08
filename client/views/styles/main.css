@@ -1,0 +1,221 @@
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Karla:400,400italic|Questrial' rel='stylesheet' type='text/css'>
+
+h1, h2, h3, h4, h5 {
+	font-family: 'Montserrat', sans-serif;
+}
+
+
+/*font-family: 'Karla', sans-serif; */
+
+
+body, p, a, td, li {
+	font-family: 'Questrial', sans-serif;
+}
+
+.rightTab {
+	float: right !important;
+}
+body, html {
+  margin:0;
+  padding: 0;
+  color: #333;
+}
+nav h2 {
+  display: inline-block;
+  padding: 6px;
+  font-size: 24px;
+}
+nav ul {
+  float: right;
+}
+nav ul li {
+  display: inline-block;
+  padding: 6px;
+  font-size: 24px;
+}
+nav ul li:hover {
+  color: white;
+  cursor: pointer;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+a:hover {
+  color: white;
+  cursor: pointer;
+}
+body {
+  background-color: #fffbaf;
+}
+nav {
+  background-color: #42cfc4;
+  padding: 0;
+  margin: 0;
+}
+table {
+  margin: 35px auto;
+   border-collapse: collapse;
+}
+td {
+  padding: 6px;
+  border: 1px solid #333;
+}
+.searchTable td + td {
+  border-left: 1px solid;
+}
+.searchTable tr + tr {
+  border-top: 1px solid;
+}
+.searchTable th + th {
+  border-left: 1px solid;
+}
+footer {
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #42cfc4;
+}
+tr, td, th {
+  margin: 0;
+  border: 0;
+}
+/*
+tr:nth-child(odd) {
+  background: #d1e4d1;
+}
+tr:nth-child(even) {
+  background: #f3fbf1;
+}  */
+input {
+  border-radius: 4px;
+  height: 1.4em;
+  border: 1px solid #000;
+}
+button {
+  border-radius: 4px;
+  border: 1px solid #000;
+  height: 36px;
+  background-color: #ff5656;
+  font-size: 16px;
+  color: white;
+}
+
+.btn2 {
+	height: 24px;
+	background-color: #CD0A0A;
+}
+.btn2:hover {
+	cursor: pointer;
+	background-color: #ff5656;
+}
+button:hover {
+  cursor: pointer;
+  background-color: #CD0A0A;
+}
+button:active {
+  background-color: #EF2A2A;
+}
+select {
+  border-radius: 4px;
+  height: 2em;
+  width: 100%;
+}
+.inBlock {
+	display: inline-block;
+}
+.centered {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+/*******************************************
+STUFF FOR LANDING PAGE
+*******************************************/
+.first, .second, .third {
+	width: 29.5%;
+	padding: 10px;
+	padding: 10px;
+	margin: 16px 1%;
+	background-color: white;
+	border: 1px solid black;
+	border-radius: 4px;
+	display: none;
+	float: left;
+}
+.clearFix {
+	clear: both;
+}
+.content {
+	width: 100%;
+}
+.fourth {
+	background-color: #42cfc4;
+	width: 29.5%;
+	margin-top: 16px;
+	margin-bottom: 70px;
+	border: 1px solid black;
+	border-radius: 4px;
+	display: none;
+}
+.signupInput {
+	margin: 8px 0;
+}
+.signupButton {
+	margin: 0 24px 16px 0;
+}
+.overlay {
+	display: none;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: rgba(0,0,0,.85);
+}
+.about, .contact	{
+	background-color: white;
+	border: 1px solid black;
+	border-radius: 4px;
+	display: none;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+	margin-left: auto;
+	width: 30%;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+}
+@media screen and (max-width: 1220px) {
+	.first, .second, .third {
+		width: 25%;
+	}
+}
+
+@media screen and (max-width: 690px) {
+	.first, .second, .third, .fourth {
+		float: none;
+		width: 80%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+

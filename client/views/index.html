@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html ng-app="dataEntry">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Simple DB</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Karla:400,400italic|Questrial' rel='stylesheet' type='text/css'>
+		<link rel="icon" href="/styles/images/simpledb.ico" type="image/x-icon" >
+		<link href="/styles/main.css" rel="stylesheet">
+	</head>
+	<body>
+		<div ng-controller="testController"></div>
+		<div ng-controller="loginController">
+		<nav>
+		<h2>Simple DB</h2>
+		<ul>
+		  <li id="about">About</li>
+		  <li id="contact">Contact</li>
+		  <div class="inBlock" ng-controller="loginController">
+		  <li ng-show="loggedIn" ng-click="signOut()">Sign Out</li>
+		  </div>
+		</ul>
+	  </nav>
+		<div class="overlay">
+			<div class="about">
+				<h2 class="centered">About Simple DB</h2>
+				<p class="centered">Simple DB gives you access to your own database to store whatever you want via a simple web-based interface.  No complicated options or hard to understand features.  Just a barebones database stored on our cloud.</p>
+			</div>
+			<div class="contact">
+				<h2 class="centered">Contact</h2>
+				<p class="centered">Question?  Comment?  Site not working?  Just email me at ChristopherBurgdorff@gmail.com , or call me at (732) 267-0263.</p>
+			</div>
+		</div>
+		<div class="content">
+			<h1 class="title centered">Simple DB</h1>
+			<h2 class="subTitle centered">Databases Made Simple</h2>
+			<div class="first">
+				<h2>Step 1: Create An Account</h2>
+				<p>Simple DB is free.  Create an account today and get unlimited storage space in your own custom database in the cloud!</p>
+			</div>
+			<div class="second">
+				<h2>Step 2: Create A Template</h2>
+				<p>Tell us what you want to store.  Receipts, invoices, timesheets, or your personal record collection.  A template just needs a name and a few fields.  For example, Receipt -> Date, Amount, Item</p>
+			</div>
+			<div class="third">
+				<h2>Step 3: Store Your Info</h2>
+				<p>Click the Index Button to add info to your database, and click the Search button to search, view or sort!  It's that simple!</p>
+			</div>
+		</div>
+		<div class="clearFix"></div>
+				<div ng-show="!loggedIn" id="login" class="fourth centered">
+					<input type="text" ng-model="user.email" placeholder="Email" class="signupInput"></input><br>
+					<input type="password" ng-model="user.password" placeholder="Password" class="signupInput"></input><br>
+					<input type="text" ng-model="user.company" placeholder="Company (optional)" class="signupInput"></input><br>
+					<button ng-click="signIn()" class="signupButton">Sign In</button>
+					<button ng-click="register()" class="signupButton">Register</button>
+					<span ng-show="signInError">Incorrect Username or Password</span>
+					<span ng-show="emailFound">Email already registered</span>
+					<span ng-show="compFound">Company alread registered</span>
+					<span ng-show="regSuccess">Registration was successful <a href="/main/">Click Here if you are not redirected</a></span>
+				</div>
+				<div ng-show="loggedIn">
+					<button ng-click="signOut()">Sign Out</button>
+					<span> {{ user.email }}</span>
+				</div>
+		</div>
+		<footer>
+		<p>Designed by <a href="http://www.chrisburgdorff.com">Chris Burgdorff</a></p>
+		</footer>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript"></script>
+		<script src="styles/ui.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js" type="text/javascript"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-resource.js" type="text/javascript"></script>
+		<script src="/js/app.js" type="text/javascript"></script>
+		<script src="/js/controllers/test-controller.js" type="text/javascript"></script>
+		<script src="/js/controllers/login-controller.js" type="text/javascript"></script>
+		<script src="/js/controllers/index-controller.js" type="text/javascript"></script>
+		<script src="/js/controllers/search-controller.js" type="text/javascript"></script>
+		
+	</body>
+</html>

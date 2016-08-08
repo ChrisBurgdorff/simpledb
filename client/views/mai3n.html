@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html ng-app="dataEntry">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Basey - Your Simple One Stop Database Solution</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Karla:400,400italic|Questrial' rel='stylesheet' type='text/css'>
+		<link href="styles/jqueryui/jquery-ui.css" rel="stylesheet">
+		<link href="/styles/main.css" rel="stylesheet">		
+	</head>
+	<body>
+		<div ng-controller="loginController">
+			<nav>
+				<div ng-show="loggedIn">
+					<button class="btn" ng-click="signOut()">Sign Out</button>
+					<span> {{ userEmail }}</span>
+					<span> {{companyName}}</span>
+				</div>
+			</nav>
+		</div>
+			<div id="tabs">
+			<div ng-controller="indexController">
+				<ul>
+					<li><a href="#tabs-1" ng-click="index()">Index</a></li>
+					<li><a href="#tabs-2" ng-click="search()">Search</a></li>
+					<li class="rightTab"><a href="#tabs-3">User</a></li>
+					<li><a href="#tabs-4" class="rightTab">Basey</a></li>
+				</ul>
+			<div id="tabs-1" ng-show="isIndexing">
+				<span>Select Template</span>
+				<select id="templates" ng-model="currTemplate" ng-change="addTemplate(currTemplate)">
+					<option value="">---Select Template---</option>
+					<option ng-repeat="template in templates" value ="{{template.name}}">{{template.name}}</option>
+					<option>New Template</option>
+				</select>
+				<div ng-show="templating">
+					<input ng-model="newTemplate" placeholder="Template Name">
+					<ul>
+						<li ng-repeat="field in fields">{{field.name}} : {{field.type}}</li>
+					</ul>
+					<input ng-model="newFieldName" placeholder="Field Name">
+					<select ng-model="newFieldType">
+						<option disabled selected value> -- select an option -- </option>
+						<option>Text</option>
+						<option>Number</option>
+						<option>Date</option>
+						<option>Time</option>
+					</select>
+					<button class="btn" ng-click="addField()">Add Field</button>
+					<button class="btn" ng-click="submitTemplate()">Submit Template</button>
+					<button class="btn" ng-click="cancelTemplate()">Cancel</button>
+				</div>
+				<div ng-show="indexing">
+				<table>
+					<tr ng-repeat-start="field in fields">
+						<td>{{field.name}}</td>
+					</tr>
+					<tr ng-repeat-end>
+						<td><input class="fields" type="text"></td>
+					</tr>
+					<tr>
+						<td><button class="btn" ng-click="submitRecord()">Submit Record</button></td>
+					</tr>
+				</table>
+				</div>
+			</div>
+			</div>
+		<div ng-controller="searchController" id="tabs-2">
+			<div ng-show="isSearching">Select Template
+				<select id="searchTemplates" ng-model="searchTemplate" ng-change="changeTemplate(searchTemplate)">
+					<option value="All">All</option>
+					<option ng-repeat="template in templates" value ="{{template.name}}">{{template.name}}</option>
+				</select>
+				<div ng-show="searching">
+					<table>
+					<tr>
+						<td>
+							<select ng-model="fieldToSearch" id="fieldDDL">
+								<option value="All">All</option>
+								<option ng-repeat="searchField in searchFields" value="{{searchField.name}}">{{searchField.name}}</option>
+							</select>
+							<input type="text" ng-model="valueToSearch">
+						</td>
+					</tr>
+					</table>
+					<button class="btn" ng-click="searchRecords()">Search</button>
+					<table id="results">
+						<tr>
+						<th ng-repeat="header in headers">{{header}}</th>
+						<tr>
+						<!--
+						<tr ng-repeat="tableRow in tableRows">
+						<td>{{tableCell}}</td>
+						</tr>		  -->				
+					</table>
+					<ul><li ng-repeat="row in rows">{{row}}</li></ul>
+				</div>
+			</div>
+		</div>
+		</div>
+		<!-- Meetups view
+		<div ng-controller="meetupsController">
+			<h1>There are {{meetups.length}} meetups</h1>
+			<ul>
+				<li ng-repeat="meetup in meetups">{{meetup.name}}</li>
+			</ul>
+			<form ng-submit="createMeetup()">
+				<input type="text" placeholder="Meetup Name" ng-model="meetupName" ></input>
+				<button type="submit">Add</button>
+			</form>
+		</div>     -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript"></script>
+		<script src="styles/jqueryui/jquery-ui.js"></script>
+		<script src="styles/ui.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js" type="text/javascript"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-resource.js" type="text/javascript"></script>
+		<script src="/js/app.js" type="text/javascript"></script>
+		<script src="/js/controllers/login-controller.js" type="text/javascript"></script>
+		<script src="/js/controllers/index-controller.js" type="text/javascript"></script>
+		<script src="/js/controllers/search-controller.js" type="text/javascript"></script>
+	</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html ng-app="dataEntry">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Basey - Your Simple One Stop Database Solution</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+		<div ng-controller="loginController">
+			<nav>
+				<div ng-show="loggedIn">
+					<button ng-click="signOut()">Sign Out</button>
+					<span> {{ user.email }}</span>
+				</div>
+			</nav>
+		</div>
+		<div class="content">
+			<h1 class="title">Basey</h1>
+			<p>This is the Dashboard.</p>			
+		</div>
+		<div ng-controller="indexController">
+			<button ng-click="index()">Index</button>
+			<div ng-show="isIndexing">
+				<select id="templates" ng-model="currTemplate">
+					<option ng-repeat="template in templates">{{template.name}}</option>
+				</select>
+				<input ng-model="newTemplate" placeholder="Template Name">
+				<button ng-click="addTemplate()">New Template</button>
+				<div ng-show="templating">
+					<span ng-show="templating">{{currTemplate}}</span>
+					<input ng-model="newFieldName" placeholder="Field Name">
+					<select ng-model="newFieldType">
+						<option>Text</option>
+						<option>Number</option>
+						<option>Date</option>
+						<option>Time</option>
+					</select>
+					<button ng-click="addField()">Add Field</button>
+					<ul ng-repeat="field in fields">
+						<li>{{field.name}}</li>
+						<li>{{field.type}}</li>
+					</ul>
+					<button ng-click="submitTemplate()">Submit Template</button>
+				</div>
+			</div>
+		</div>
+		<div ng-controller="searchController">
+			<button ng-click="search()">Search</button>
+			<div ng-show="isSearching">Searching
+			</div>
+		</div>
+		<!-- Meetups view
+		<div ng-controller="meetupsController">
+			<h1>There are {{meetups.length}} meetups</h1>
+			<ul>
+				<li ng-repeat="meetup in meetups">{{meetup.name}}</li>
+			</ul>
+			<form ng-submit="createMeetup()">
+				<input type="text" placeholder="Meetup Name" ng-model="meetupName" ></input>
+				<button type="submit">Add</button>
+			</form>
+		</div>     -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js" type="text/javascript"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-resource.js" type="text/javascript"></script>
+		<script src="/js/app.js" type="text/javascript"></script>
+		<script src="/js/controllers/login-controller.js" type="text/javascript"></script>
+		<script src="/js/controllers/index-controller.js" type="text/javascript"></script>
+		<script src="/js/controllers/search-controller.js" type="text/javascript"></script>
+		<scri
+	</body>
+</html>
