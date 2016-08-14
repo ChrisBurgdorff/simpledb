@@ -45,7 +45,7 @@ app.use('/js', express.static(__dirname + '/client/js'));
 
 app.get('/api/search/:searchString', searchController.searchRecords);
 
-mongoose.connect('mongodb://localhost:27017/de2');
+mongoose.connect('mongodb://sgarcia914:Ahib0914@ec2-52-37-70-209.us-west-2.compute.amazonaws.com:27017/de2');
 
 app.listen(3000,function() {
 	console.log("Application listening on port 3000");
